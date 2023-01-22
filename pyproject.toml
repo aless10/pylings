@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "pythonlings"
+version = "0.1.0"
+description = ""
+authors = ["Alessio Izzo <alessio.izzo86@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+watchdog = "^2.2.1"
+pytest = "^7.2.1"
+pyyaml = "^6.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

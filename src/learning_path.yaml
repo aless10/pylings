@@ -1,0 +1,10 @@
+intro:
+  base_path: 'exercises/intro'
+  exercises:
+    - 'dummy_1.py'
+    - 'add_numbers_2.py'
+functions:
+  base_path: 'exercises/functions'
+  exercises:
+    - 'functions_1.py'
+    - 'functions_2.py'
