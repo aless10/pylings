@@ -72,6 +72,17 @@ dev = ["pre-commit", "tox"]
 testing = ["pytest", "pytest-benchmark"]
 
 [[package]]
+name = "pyfiglet"
+version = "0.7"
+description = "Pure-python FIGlet implementation"
+category = "main"
+optional = false
+python-versions = "*"
+files = [
+    {file = "pyfiglet-0.7.tar.gz", hash = "sha256:9ae0ca97357399d4b95cfa7b583d7e7fe9007fe66a79936a3a04bf9dc785240e"},
+]
+
+[[package]]
 name = "pytest"
 version = "7.2.1"
 description = "pytest: simple powerful testing with Python"
@@ -187,4 +198,4 @@ watchmedo = ["PyYAML (>=3.10)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "592c7575d8d0c352294e3381b3abd93d070932047f8cb63cc9862312f0ddffd0"
+content-hash = "2217067031e28d01874a2279aed57a286585a6c5b4e37697c903bcc38a243176"

@@ -1,4 +1,4 @@
-from intro.add_numbers_2 import add_numbers
+from exercises.intro.add_numbers_2 import add_numbers
 
 
 def test_add_numbers():
