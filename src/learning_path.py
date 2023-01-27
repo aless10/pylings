@@ -12,11 +12,16 @@ class Node(Generic[T]):
     TESTS_ROOT = Path(".") / 'tests'
     ABSOLUTE_ROOT = Path(".") / 'exercises'
 
-    def __init__(self, base_path: str, file_name: str, next_node: T | None = None):
-        self.file_path = self.ABSOLUTE_ROOT / base_path / file_name
-        self.file_name = file_name
-        self.test_file_name = self.TESTS_ROOT / base_path / f"test_{file_name}"
-        self.next_node: T = next_node
+    def __init__(self, base_path: str, filename: str, mode: str, hint: str):
+        self.file_path = self.ABSOLUTE_ROOT / base_path / filename
+        self.file_name = filename
+        self.mode = mode
+        self.hint = hint
+        self.test_file_name = self.TESTS_ROOT / base_path / f"test_{filename}"
+        self.next_node: T = None
+
+    def set_next_node(self, node: T):
+        self.next_node = node
 
 
 class LearningPath:
@@ -27,14 +32,14 @@ class LearningPath:
 
         prev = None
         for section, exercises in raw.items():
-            for ex_filename in exercises:
-                node = Node(section, ex_filename)
+            for exercise_data in exercises.values():
+                node = Node(section, **exercise_data)
                 if self.head is None:
                     self.head = node
                 if prev is not None:
-                    prev.next_node = node
+                    prev.set_next_node(node)
                 prev = node
-                self.lessons[ex_filename] = node
+                self.lessons[exercise_data['filename']] = node
 
     def __repr__(self):
         node: Node = self.head

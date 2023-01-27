@@ -11,6 +11,7 @@ watchdog = "^2.2.1"
 pytest = "^7.2.1"
 pyyaml = "^6.0"
 pyfiglet = "0.7"
+tqdm = "^4.64.1"
 
 
 [build-system]

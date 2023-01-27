@@ -18,25 +18,25 @@ class Watcher:
         self.directory = _directory
 
     def run(self, _learning_path):
-        event_handler = Handler(_learning_path)
+        event_handler = Handler(_learning_path, self.observer)
         self.observer.schedule(event_handler, self.directory, recursive=True)
         self.observer.start()
         try:
             while True:
-                print("Observing")
                 time.sleep(5)
-        except:
+        except Exception:
             self.observer.stop()
             print("Stop. Exiting...")
-
-        self.observer.join()
+        finally:
+            self.observer.join()
 
 
 class Handler(FileSystemEventHandler):
 
-    def __init__(self, _learning_path: LearningPath):
+    def __init__(self, _learning_path: LearningPath, observer: Observer):
         self.last_modified = datetime.now()
         self.learning_path = _learning_path
+        self.observer = observer
 
     def on_modified(self, event):
         if datetime.now() - self.last_modified < timedelta(seconds=2):
@@ -53,9 +53,17 @@ class Handler(FileSystemEventHandler):
             result = subprocess.run(f"pytest {node.test_file_name}", shell=True)
             if result.returncode == 0:
                 if node.next_node is not None:
-                    print(f"Go to the next stage: {node.next_node.file_path}")
+                    progress.update(1)
+                    progress.display()
+                    print(f"\nGo to the next stage: {node.next_node.file_path}")
+                else:
+                    print("Hooray!")
+                    exit(0)
+
             else:
-                print("There is still something missing here. Try again.")
+                print("There is still something missing here. Try again.\n")
+                print(node.hint)
+                progress.display()
 
 
 if __name__ == '__main__':
@@ -63,6 +71,19 @@ if __name__ == '__main__':
 
     f = pyfiglet.Figlet(font='slant')
     print(f.renderText('Welcome to pyhtonlings'))
+    from pbar import init_progress_bar
     learning_path = load_learning_path_from_file(Path("src/learning_path.yaml"))
+    i = 0
+    for i, node in enumerate(learning_path.lessons.values()):
+        result = subprocess.run(f"pytest {node.test_file_name}", shell=True, capture_output=True)
+        if result.returncode != 0:
+            break
+    else:
+        i = len(learning_path.lessons)
+    progress = init_progress_bar(len(learning_path.lessons), initial=i)
+    print(f"\nNext exercise: {node.file_path}")
     w = Watcher(directory)
     w.run(learning_path)
+    print(f.renderText('Congrats! You have just finished pyhtonlings'))
+
+
