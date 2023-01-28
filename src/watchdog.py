@@ -1,15 +1,10 @@
 import os
 import subprocess
-import sys
 import time
 from datetime import datetime, timedelta
-from pathlib import Path
 
-import pyfiglet
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
-
-from src.learning_path import LearningPath, load_learning_path_from_file
 
 
 class Watcher:
@@ -65,25 +60,5 @@ class Handler(FileSystemEventHandler):
                 print(node.hint)
                 progress.display()
 
-
-if __name__ == '__main__':
-    directory = sys.argv[1] if len(sys.argv) > 1 else '.'
-
-    f = pyfiglet.Figlet(font='slant')
-    print(f.renderText('Welcome to pyhtonlings'))
-    from pbar import init_progress_bar
-    learning_path = load_learning_path_from_file(Path("src/learning_path.yaml"))
-    i = 0
-    for i, node in enumerate(learning_path.lessons.values()):
-        result = subprocess.run(f"pytest {node.test_file_name}", shell=True, capture_output=True)
-        if result.returncode != 0:
-            break
-    else:
-        i = len(learning_path.lessons)
-    progress = init_progress_bar(len(learning_path.lessons), initial=i)
-    print(f"\nNext exercise: {node.file_path}")
-    w = Watcher(directory)
-    w.run(learning_path)
-    print(f.renderText('Congrats! You have just finished pyhtonlings'))
 
 
