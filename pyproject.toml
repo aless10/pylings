@@ -1,9 +1,12 @@
 [tool.poetry]
-name = "pythonlings"
+name = "pylings"
 version = "0.1.0"
 description = ""
 authors = ["Alessio Izzo <alessio.izzo86@gmail.com>"]
 readme = "README.md"
+packages = [
+    { include = "src" },
+]
 
 [tool.poetry.dependencies]
 python = "^3.11"

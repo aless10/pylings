@@ -1,10 +1,11 @@
 import os
 import subprocess
+import sys
 
-from pbar import progress_bar
+from .pbar import progress_bar
 
-from learning_path import LearningPath, Node
-from printer import Printer
+from .learning_path import LearningPath, Node
+from .printer import Printer
 
 
 class ExerciseHandler:
@@ -28,7 +29,7 @@ class ExerciseHandler:
 
     def finish(self):
         self._printer.finish()
-        exit(0)
+        sys.exit(0)
 
     def _handle_next_node(self, next_node: Node) -> None:
         self._progress_bar.update(1)

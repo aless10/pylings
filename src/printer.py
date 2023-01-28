@@ -1,6 +1,6 @@
 import pyfiglet
 
-from learning_path import Node
+from .learning_path import Node
 
 
 class Printer:

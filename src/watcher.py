@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler, FileModifiedEvent
 
-from handler import ExerciseHandler
+from .handler import ExerciseHandler
 
 
 class Watcher:

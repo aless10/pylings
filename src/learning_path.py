@@ -6,8 +6,8 @@ from pathlib import Path
 
 
 class BasePath(Enum):
-    TEST = Path("..") / 'tests'
-    EXERCISE = Path("..") / 'exercises'
+    TEST = Path(".") / 'tests'
+    EXERCISE = Path(".") / 'exercises'
 
 
 Mode = {
@@ -66,7 +66,7 @@ class LearningPath:
         node: Node = self.head
         nodes: list[str] = []
         while node is not None:
-            nodes.append(node._file_name)
+            nodes.append(node.file_path.name)
             node: Node = node.next_node
         nodes.append("None")
         return " -> ".join(nodes)
@@ -88,6 +88,6 @@ class LearningPath:
         return index, node
 
     @classmethod
-    def from_file(cls, filename: str | Path = "learning_path.yaml") -> 'LearningPath':
-        with open(filename) as _file:
+    def from_file(cls, filename: Path) -> 'LearningPath':
+        with filename.absolute().open() as _file:
             return cls(yaml.safe_load(_file))
