@@ -1,3 +1,2 @@
 def add_numbers():
-    return 1
-
+    return 2

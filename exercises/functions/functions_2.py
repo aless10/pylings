@@ -1,4 +1,4 @@
 
 def f():
-    return
+    return 10
 

@@ -1,7 +1,7 @@
 from tqdm import tqdm
 
 
-def init_progress_bar(lessons: int, initial: int = 0) -> tqdm:
+def progress_bar(lessons: int, initial: int = 0) -> tqdm:
     return tqdm(
         total=lessons,
         desc="Progress",

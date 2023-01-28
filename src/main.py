@@ -1,6 +1,16 @@
-directory = sys.argv[1] if len(sys.argv) > 1 else '.'
+from handler import ExerciseHandler
+from learning_path import LearningPath
+from printer import Printer
+from watcher import Watcher, EventHandler
 
-from pbar import init_progress_bar
-progress = init_progress_bar(len(learning_path.lessons), initial=i)
-w = Watcher(directory)
-w.run(learning_path)
+
+def main():
+    directory = '../exercises'
+    learning_path = LearningPath.from_file('learning_path.yaml')
+    exercise_handler = ExerciseHandler(
+        learning_path=learning_path,
+        printer=Printer()
+    )
+    handler = EventHandler(exercise_handler)
+    w = Watcher(directory, handler)
+    w.run()

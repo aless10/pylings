@@ -1,20 +1,20 @@
 intro:
   dummy:
     filename: "dummy_1.py"
-    mode: "test"
+    mode: "TEST"
     hint: "This is an hint"
   add_numbers:
     filename: "add_numbers_2.py"
-    mode: "test"
+    mode: "TEST"
     hint: "This is an hint"
 functions:
   functions_1:
     filename: "functions_1.py"
-    mode: "test"
+    mode: "TEST"
     hint: "This is an hint"
 
   functions_2:
     filename: 'functions_2.py'
-    mode: "test"
+    mode: "TEST"
     hint: "This is an hint"
 
