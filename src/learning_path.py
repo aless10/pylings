@@ -79,7 +79,7 @@ class LearningPath:
 
     def find_first_lesson(self) -> (int, Node | None):
         for index, node in enumerate(self.lessons.values()):
-            result = subprocess.run(node.check_command, shell=True, capture_output=True)
+            result = subprocess.run(node.check_command, shell=True) #, capture_output=True)
             if result.returncode != 0:
                 break
         else:

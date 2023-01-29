@@ -9,7 +9,9 @@ You will need to have python>=3.7 installed. You can get it by visiting [](https
 
 ## MacOS/Linux
 
-Just run:
+### with poetry
+
+If you have ``poetry`` installed (or you plan to install it), run
 
 ```bash
 curl -L https://raw.githubusercontent.com/aless10/pylings/main/install.sh | bash
@@ -17,12 +19,28 @@ curl -L https://raw.githubusercontent.com/aless10/pylings/main/install.sh | bash
 curl -L https://raw.githubusercontent.com/aless10/pylings/main/install.sh | bash -s mypath/
 ```
 
-This will install pylings and give you access to the `pylings` command. Run it to get started!
+This will install pylings and give you access to the `poetry run pylings` command. Run it to get started!
+
+### with virtualenv
+
+If you want to use ``virtualenv``, run
+
+```bash
+curl -L https://raw.githubusercontent.com/aless10/pylings/main/install.sh | bash virtualenv
+# Or if you want it to be installed to a different path:
+curl -L https://raw.githubusercontent.com/aless10/pylings/main/install.sh | bash virtualenv -s mypath/
+```
+
+This will:
+
+- create a virtualenvironment called ``venv``
+- activate it
+- install pylings and give you access to the `pylings` command. Run it to get started!
 
 
 ## Manually
 
-Basically: Clone the repository at the latest tag, run `cargo install --path .`.
+Basically: Clone the repository at the latest tag, run `poetry install`.
 
 ```bash
 # find out the latest version at https://github.com/rust-lang/rustlings/releases/latest (on edit 5.3.0)

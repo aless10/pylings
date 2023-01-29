@@ -1,4 +1,4 @@
-from exercises.intro.dummy_1 import dummy
+from ...exercises.intro.dummy_1 import dummy
 
 
 def test_dummy():

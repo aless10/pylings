@@ -1,4 +1,4 @@
-from exercises.functions.functions_2 import f
+from ...exercises.functions.functions_2 import f
 
 
 def test_function_2():

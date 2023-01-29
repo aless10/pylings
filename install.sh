@@ -24,14 +24,34 @@ fi
 
 
 echo "Checking python 'installer'..."
-if [ -x "$(command -v poetry)" ]
+
+Installer=$1
+
+if [[ "$Installer" = "virtualenv" ]]
 then
-    echo "SUCCESS: poetry is installed"
+  if [ -x "$(command -v virtualenv)" ]
+  then
+      echo "SUCCESS: virtualenv is installed"
+      InstallCommand="virtualenv venv && source venv/bin/activate && python3 -m pip install ."
+      ExecCommand="pylings"
+  else
+      echo "ERROR: virtualenv does not seem to be installed."
+      echo "Please install virtualenv => https://virtualenv.pypa.io/en/latest/installation.html!"
+      exit 1
+  fi
 else
-    echo "ERROR: poetry does not seem to be installed."
-    echo "We decided to use poetry to install the project dependencies."
-    echo "Please download poetry => https://python-poetry.org/docs/#installation!"
-    exit 1
+  Installer=poetry
+  if [ -x "$(command -v poetry)" ]
+  then
+      echo "SUCCESS: poetry is installed"
+      InstallCommand="poetry install"
+      ExecCommand="poetry run pylings"
+  else
+      echo "ERROR: poetry does not seem to be installed."
+      echo "Please download poetry => https://python-poetry.org/docs/#installation!"
+      exit 1
+  fi
+
 fi
 
 # Function that compares two versions strings v1 and v2 given in arguments (e.g 1.31 and 1.33.0).
@@ -102,7 +122,7 @@ fi
 
 Path=${1:-pylings/}
 echo "Cloning pylings at $Path..."
-git clone -q https://github.com/rust-lang/rustlings "$Path"
+git clone -q https://github.com/aless10/pylings "$Path"
 
 cd "$Path"
 
@@ -116,7 +136,7 @@ then
     if [[ -z ${Version}  ]]
     then
         echo "No valid tag version found"
-        echo "Pythonlings will be installed using the main branch"
+        echo "pylings will be installed using the main branch"
         Version="main"
     else
         Version="tags/${Version}"
@@ -129,6 +149,6 @@ echo "Checking out version $Version..."
 git checkout -q ${Version}
 
 echo "Installing the 'pylings' requirements..."
-poetry install
+$InstallCommand
 
-echo "All done! Run 'poetry run pylings' to get started."
+echo "All done! Run '${ExecCommand}' to get started."
