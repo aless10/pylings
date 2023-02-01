@@ -25,7 +25,11 @@ fi
 
 echo "Checking python 'installer'..."
 
-Installer=$1
+echo "${1-poetry}"
+exit 0
+
+
+Installer="${1-poetry}"
 
 if [[ "$Installer" = "virtualenv" ]]
 then
