@@ -25,10 +25,6 @@ fi
 
 echo "Checking python 'installer'..."
 
-echo "${1-poetry}"
-exit 0
-
-
 Installer="${1-poetry}"
 
 if [[ "$Installer" = "virtualenv" ]]
@@ -44,7 +40,6 @@ then
       exit 1
   fi
 else
-  Installer=poetry
   if [ -x "$(command -v poetry)" ]
   then
       echo "SUCCESS: poetry is installed"
