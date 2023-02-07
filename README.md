@@ -5,7 +5,7 @@ This 'project' is inspired by [rustlings](https://github.com/rust-lang/rustlings
 
 ## Getting Started
 
-You will need to have python>=3.7 installed. You can get it by visiting [](https://www.python.org/downloads/).
+You will need to have python>=3.7 installed. You can get it by visiting [python website](https://www.python.org/downloads/).
 
 ## MacOS/Linux
 
