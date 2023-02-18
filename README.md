@@ -44,7 +44,7 @@ Basically: Clone the repository at the latest tag, run `poetry install`.
 
 ```bash
 # find out the latest version at https://github.com/rust-lang/rustlings/releases/latest (on edit 5.3.0)
-git clone -b 0.1.0 --depth 1 https://github.com/aless10/pylings
+git clone -b 0.2.0 --depth 1 https://github.com/aless10/pylings
 cd pylings
 poetry install
 ```
