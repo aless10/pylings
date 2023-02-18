@@ -1,6 +1,8 @@
 import subprocess
 from enum import Enum
 
+from typing import Dict, Optional
+
 import yaml
 from pathlib import Path
 
@@ -43,7 +45,7 @@ class Node:
 
 class LearningPath:
 
-    def __init__(self, raw: dict[str, dict]) -> None:
+    def __init__(self, raw: Dict[str, dict]) -> None:
         self.head = None
         self.lessons = {}
 
@@ -77,7 +79,7 @@ class LearningPath:
             yield node
             node = node.next_node
 
-    def find_first_lesson(self) -> (int, Node | None):
+    def find_first_lesson(self) -> (int, Optional[Node]):
         for index, node in enumerate(self.lessons.values()):
             result = subprocess.run(node.check_command, shell=True) #, capture_output=True)
             if result.returncode != 0:
